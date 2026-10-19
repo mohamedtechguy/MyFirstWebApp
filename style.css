@@ -1,4 +1,8 @@
 /* Mobile first: these rules are the phone layout */
+* {
+  box-sizing: border-box;
+}
+
 body {
   font-family: Arial, sans-serif;
   background-color: #f4f6f8;
@@ -55,6 +59,46 @@ a {
 
 footer {
   font-size: 0.9rem;
+}
+
+/* Form styling */
+form label {
+  display: block;
+  margin-top: 0.75rem;
+  font-weight: bold;
+}
+
+form input[type="text"],
+form input[type="email"],
+form select,
+form textarea {
+  width: 100%;
+  padding: 0.6rem;
+  font-size: 1rem;
+  border: 1px solid #5b6670;
+  border-radius: 0.25rem;
+}
+
+form fieldset {
+  margin-top: 0.75rem;
+  border: 1px solid #5b6670;
+  border-radius: 0.25rem;
+}
+
+form fieldset label {
+  display: inline-block;
+  font-weight: normal;
+  margin-right: 1rem;
+}
+
+form button {
+  margin-top: 1rem;
+  padding: 0.7rem 1.2rem;
+  font-size: 1rem;
+  background-color: #8a1c4a;
+  color: #ffffff;
+  border: none;
+  border-radius: 0.25rem;
 }
 
 /* Tablet and desktop: more space, larger headings, two columns */
