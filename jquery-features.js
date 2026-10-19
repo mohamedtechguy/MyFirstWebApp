@@ -3,11 +3,12 @@ $(function () {
   $("#toggle-list").on("click", function () {
     var button = $(this);
     var list = $("#used-list");
-    var willHide = list.is(":visible");
 
     list.slideToggle(300, function () {
-      button.text(willHide ? "Show list" : "Hide list");
-      button.attr("aria-expanded", willHide ? "false" : "true");
+      // Read the real state after the slide has finished, so the button always matches the list.
+      var open = list.is(":visible");
+      button.text(open ? "Hide list" : "Show list");
+      button.attr("aria-expanded", open ? "true" : "false");
     });
   });
 });
