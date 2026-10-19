@@ -69,3 +69,104 @@ form.addEventListener("submit", function (event) {
   form.reset();
   counter.textContent = "0 of 200 characters";
 });
+// Learning log: build and change the page with DOM methods.
+(function () {
+  var input = document.getElementById("log-input");
+  var list = document.getElementById("log-list");
+  var count = document.getElementById("log-count");
+  var error = document.getElementById("log-error");
+
+  function updateCount() {
+    var total = list.querySelectorAll("li").length;
+    var done = list.querySelectorAll("li.done").length;
+    count.textContent = total + (total === 1 ? " item, " : " items, ") + done + " done";
+  }
+
+  function addItem() {
+    var text = input.value.trim();
+    if (text === "") {
+      error.textContent = "Please type something to add.";
+      input.focus();
+      return;
+    }
+    error.textContent = "";
+
+    var li = document.createElement("li");
+    var box = document.createElement("input");
+    box.setAttribute("type", "checkbox");
+    box.setAttribute("aria-label", "Mark done: " + text);
+    var span = document.createElement("span");
+    span.textContent = text;
+    var remove = document.createElement("button");
+    remove.setAttribute("type", "button");
+    remove.textContent = "Remove";
+    remove.setAttribute("aria-label", "Remove: " + text);
+
+    box.addEventListener("change", function () {
+      li.classList.toggle("done", box.checked);
+      updateCount();
+    });
+    remove.addEventListener("click", function () {
+      list.removeChild(li);
+      updateCount();
+      input.focus();
+    });
+
+    li.appendChild(box);
+    li.appendChild(span);
+    li.appendChild(remove);
+    list.appendChild(li);
+
+    input.value = "";
+    input.focus();
+    updateCount();
+  }
+
+  document.getElementById("log-add").addEventListener("click", addItem);
+  input.addEventListener("keydown", function (event) {
+    if (event.key === "Enter") { addItem(); }
+  });
+  document.getElementById("log-clear").addEventListener("click", function () {
+    while (list.firstChild) { list.removeChild(list.firstChild); }
+    updateCount();
+  });
+})();
+
+// Weather: call a free API with fetch and show part of the JSON it returns.
+(function () {
+  var button = document.getElementById("weather-btn");
+  var output = document.getElementById("weather-result");
+  var url = "https://api.open-meteo.com/v1/forecast?latitude=53.38&longitude=-1.47" +
+    "&current=temperature_2m,wind_speed_10m,weather_code&timezone=Europe%2FLondon";
+
+  // The API sends a number (a WMO code) for the conditions, so I translate the common ones.
+  var conditions = {
+    0: "clear sky", 1: "mainly clear", 2: "partly cloudy", 3: "overcast",
+    45: "fog", 48: "fog", 51: "light drizzle", 53: "drizzle", 55: "heavy drizzle",
+    61: "light rain", 63: "rain", 65: "heavy rain", 71: "light snow", 73: "snow",
+    75: "heavy snow", 80: "rain showers", 81: "rain showers", 82: "heavy rain showers",
+    95: "thunderstorm"
+  };
+
+  async function getWeather() {
+    button.disabled = true;
+    output.textContent = "Loading the weather...";
+    try {
+      var response = await fetch(url);
+      if (!response.ok) {
+        throw new Error("The weather service replied with status " + response.status);
+      }
+      var data = await response.json();
+      var now = data.current;
+      var text = conditions[now.weather_code] || "conditions not listed (code " + now.weather_code + ")";
+      output.textContent = "Sheffield now: " + now.temperature_2m + " " + data.current_units.temperature_2m +
+        ", wind " + now.wind_speed_10m + " " + data.current_units.wind_speed_10m + ", " + text + ".";
+    } catch (problem) {
+      output.textContent = "Sorry, the weather could not be loaded. Please try again later.";
+    } finally {
+      button.disabled = false;
+    }
+  }
+
+  button.addEventListener("click", getWeather);
+})();
