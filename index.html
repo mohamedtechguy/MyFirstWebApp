@@ -40,18 +40,21 @@
         <li>an external stylesheet (style.css) instead of style attributes</li>
         <li>a media query that changes the layout on wider screens</li>
         <li>form, label, input, select, textarea and button for the feedback form</li>
+        <li>JavaScript (script.js) to check the form and show a result</li>
       </ul>
     </section>
 
     <section>
       <h2>Feedback form</h2>
-      <p>I added a form using HTML form elements. It does not send the answers anywhere yet, because GitHub Pages only hosts static files.</p>
-      <form>
+      <p>I added a form using HTML form elements. JavaScript checks your answers and shows a message on the page. It does not send them anywhere, because GitHub Pages only hosts static files.</p>
+      <form id="feedback" novalidate>
         <label for="name">Your name</label>
-        <input type="text" id="name" name="name">
+        <input type="text" id="name" name="name" aria-describedby="name-error">
+        <p class="error" id="name-error" role="alert"></p>
 
         <label for="email">Your email</label>
-        <input type="email" id="email" name="email">
+        <input type="email" id="email" name="email" aria-describedby="email-error">
+        <p class="error" id="email-error" role="alert"></p>
 
         <label for="topic">Favourite topic so far</label>
         <select id="topic" name="topic">
@@ -64,15 +67,18 @@
           <legend>Is this page easy to read on your device?</legend>
           <label for="yes"><input type="radio" id="yes" name="readable" value="yes"> Yes</label>
           <label for="no"><input type="radio" id="no" name="readable" value="no"> No</label>
+          <p class="error" id="readable-error" role="alert"></p>
         </fieldset>
 
         <label for="comments">Comments</label>
-        <textarea id="comments" name="comments" rows="3"></textarea>
+        <textarea id="comments" name="comments" rows="3" maxlength="200"></textarea>
+        <p class="counter" id="counter">0 of 200 characters</p>
 
         <label for="updates"><input type="checkbox" id="updates" name="updates"> Tell me about new versions</label>
 
         <button type="submit">Send</button>
       </form>
+      <p id="result" class="result" role="status"></p>
     </section>
 
     <section>
@@ -84,5 +90,6 @@
   <footer>
     <p>Web Technologies, Sheffield Hallam University.</p>
   </footer>
+  <script src="script.js"></script>
 </body>
 </html>
