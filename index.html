@@ -41,6 +41,8 @@
         <li>a media query that changes the layout on wider screens</li>
         <li>form, label, input, select, textarea and button for the feedback form</li>
         <li>JavaScript (script.js) to check the form and show a result</li>
+        <li>DOM methods (createElement, appendChild, removeChild, classList) for the learning log</li>
+        <li>fetch and JSON to read data from a weather API</li>
       </ul>
     </section>
 
@@ -79,6 +81,26 @@
         <button type="submit">Send</button>
       </form>
       <p id="result" class="result" role="status"></p>
+    </section>
+
+    <section>
+      <h2>My learning log</h2>
+      <p>Type something you have learnt and add it to the list. JavaScript uses DOM methods to create and remove the list items.</p>
+      <label for="log-input">New item</label>
+      <input type="text" id="log-input" aria-describedby="log-error">
+      <p class="error" id="log-error" role="alert"></p>
+      <button type="button" id="log-add">Add to log</button>
+      <button type="button" id="log-clear">Clear log</button>
+      <p id="log-count" role="status">0 items, 0 done</p>
+      <ul id="log-list"></ul>
+    </section>
+
+    <section>
+      <h2>Weather in Sheffield</h2>
+      <p>This section calls a free weather API (Open-Meteo) with fetch and shows the current weather.</p>
+      <button type="button" id="weather-btn">Get the weather</button>
+      <p id="weather-result" role="status"></p>
+      <p class="credit">Weather data by <a href="https://open-meteo.com/">Open-Meteo.com</a>.</p>
     </section>
 
     <section>
