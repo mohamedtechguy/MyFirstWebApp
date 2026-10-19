@@ -69,6 +69,7 @@ form label {
 }
 
 form input[type="text"],
+#log-input,
 form input[type="email"],
 form select,
 form textarea {
@@ -91,7 +92,7 @@ form fieldset label {
   margin-right: 1rem;
 }
 
-form button {
+button {
   margin-top: 1rem;
   padding: 0.7rem 1.2rem;
   font-size: 1rem;
@@ -128,6 +129,49 @@ textarea.invalid {
 
 .result:empty {
   display: none;
+}
+
+button + button {
+  margin-left: 0.5rem;
+}
+
+#log-list {
+  list-style: none;
+  padding: 0;
+}
+
+#log-list li {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+
+#log-list button {
+  margin-top: 0;
+  margin-left: auto;
+  padding: 0.3rem 0.7rem;
+  font-size: 0.9rem;
+}
+
+#log-list input[type="checkbox"] {
+  width: 1.25rem;
+  height: 1.25rem;
+}
+
+.done {
+  text-decoration: line-through;
+  color: #5b6670;
+}
+
+label[for="log-input"] {
+  display: block;
+  margin-top: 0.75rem;
+  font-weight: bold;
+}
+
+.credit {
+  font-size: 0.9rem;
 }
 
 /* Tablet and desktop: more space, larger headings, two columns */
