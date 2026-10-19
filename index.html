@@ -39,7 +39,40 @@
         <li>header, main, section and footer for page landmarks</li>
         <li>an external stylesheet (style.css) instead of style attributes</li>
         <li>a media query that changes the layout on wider screens</li>
+        <li>form, label, input, select, textarea and button for the feedback form</li>
       </ul>
+    </section>
+
+    <section>
+      <h2>Feedback form</h2>
+      <p>I added a form using HTML form elements. It does not send the answers anywhere yet, because GitHub Pages only hosts static files.</p>
+      <form>
+        <label for="name">Your name</label>
+        <input type="text" id="name" name="name">
+
+        <label for="email">Your email</label>
+        <input type="email" id="email" name="email">
+
+        <label for="topic">Favourite topic so far</label>
+        <select id="topic" name="topic">
+          <option value="html">HTML</option>
+          <option value="css">CSS</option>
+          <option value="forms">Forms</option>
+        </select>
+
+        <fieldset>
+          <legend>Is this page easy to read on your device?</legend>
+          <label for="yes"><input type="radio" id="yes" name="readable" value="yes"> Yes</label>
+          <label for="no"><input type="radio" id="no" name="readable" value="no"> No</label>
+        </fieldset>
+
+        <label for="comments">Comments</label>
+        <textarea id="comments" name="comments" rows="3"></textarea>
+
+        <label for="updates"><input type="checkbox" id="updates" name="updates"> Tell me about new versions</label>
+
+        <button type="submit">Send</button>
+      </form>
     </section>
 
     <section>
