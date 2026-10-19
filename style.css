@@ -101,6 +101,35 @@ form button {
   border-radius: 0.25rem;
 }
 
+.error {
+  color: #b00020;
+  font-weight: bold;
+  margin: 0.25rem 0 0;
+  min-height: 0;
+}
+
+.counter {
+  font-size: 0.9rem;
+  color: #5b6670;
+  margin: 0.25rem 0 0;
+}
+
+input.invalid,
+textarea.invalid {
+  border: 2px solid #b00020;
+}
+
+.result {
+  margin-top: 1rem;
+  padding: 0.75rem;
+  border-left: 4px solid #1b6e3c;
+  background-color: #eef7f1;
+}
+
+.result:empty {
+  display: none;
+}
+
 /* Tablet and desktop: more space, larger headings, two columns */
 @media (min-width: 700px) {
   body {
